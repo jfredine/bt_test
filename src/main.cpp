@@ -12,9 +12,14 @@ void setup() {
 #define BUFFER_SIZE 200
 void loop() {
     while (Serial.available()) {
-        SoftSerial.write(Serial.read());
+        char c = Serial.read();
+        Serial.write(c);
+        SoftSerial.write(c);
+        
     }
     while(SoftSerial.available()) {
-        Serial.write(SoftSerial.read());
+        char c = SoftSerial.read();
+        SoftSerial.write(c);
+        Serial.write(c);
     }
 }
